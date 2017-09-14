@@ -9,18 +9,19 @@ import javax.swing.JPanel;
 
 public class MainPanel extends JPanel {
 
-  private final Minesweeper minesweeper;
-  private final ViewGame viewGame;
+  private Minesweeper minesweeper;
+  private ViewGame viewGame;
 
-  private final Button table[][];
+  private Button table[][];
 
-  private final GridLayout gridLayout;
+  private GridLayout gridLayout;
 
   private String surbombs;
   private int randomBombX;
   private int randomBombY;
 
   private int bombsRemaining;
+  
   public MainPanel(Minesweeper minesweeper, ViewGame viewGame) {
     this.minesweeper = minesweeper;
     this.viewGame = viewGame;

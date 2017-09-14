@@ -10,11 +10,11 @@ import javax.swing.JPanel;
 
 public class TopPanel extends JPanel {
 
-  private final Minesweeper minesweeper;
-  private final ViewGame viewGame;
+  private Minesweeper minesweeper;
+  private ViewGame viewGame;
 
-  private final JPanel panelTop;
-  private final JPanel panelButtons;
+  private JPanel panelTop;
+  private JPanel panelButtons;
 
   private final Label NEW_GAME;
   private final Label bombs;
@@ -23,7 +23,8 @@ public class TopPanel extends JPanel {
   private final Button restartMedium;
   private final Button restartHard;
   
-  private final int bombsRemaining;
+  private int bombsRemaining;
+  
   public TopPanel(Minesweeper minesweeper, ViewGame viewGame) {
     this.minesweeper = minesweeper;
     this.viewGame = viewGame;

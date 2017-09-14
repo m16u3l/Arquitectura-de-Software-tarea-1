@@ -5,12 +5,12 @@ import javax.swing.JFrame;
 
 public final class ViewGame extends JFrame {
 
-  public final PanelGame panelGame;
+  public PanelGame panelGame;
 
-  private final Font font;
+  private Font font;
 
-  private final int sizeX;
-  private final int sizeY;
+  private int sizeX;
+  private int sizeY;
 
   public ViewGame(Minesweeper minesweeper) {
     font = new Font("ComicSans", Font.BOLD, 17);

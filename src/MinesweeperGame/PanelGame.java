@@ -4,8 +4,8 @@ import java.awt.BorderLayout;
 import javax.swing.JPanel;
 
 public class PanelGame extends JPanel {
-  public final TopPanel topPanel;
-  private final MainPanel mainPanel;
+  public  TopPanel topPanel;
+  private  MainPanel mainPanel;
   public PanelGame(Minesweeper minesweeper, ViewGame viewGame) {
     setLayout(new BorderLayout());
     

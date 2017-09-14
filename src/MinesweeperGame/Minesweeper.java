@@ -9,10 +9,10 @@ public class Minesweeper {
   private int previewRows;
   private int previewColumns;
 
-  private final boolean bomb[][];
-  private final boolean flag[][];
-  private final boolean exposed[][];
-  private final boolean checkwinbool[][];
+  private boolean bomb[][];
+  private boolean flag[][];
+  private boolean exposed[][];
+  private boolean checkwinbool[][];
 
   private int setup;
   private int sizeX;
