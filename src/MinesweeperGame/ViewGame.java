@@ -20,6 +20,7 @@ public final class ViewGame extends JFrame {
     setDefaultCloseOperation(EXIT_ON_CLOSE);
     panelGame = new PanelGame(minesweeper, this);
     add(panelGame);
+    
     switch (minesweeper.getSetup()) {
       case 1:
         sizeX = 300;
