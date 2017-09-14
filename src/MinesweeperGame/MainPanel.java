@@ -62,12 +62,8 @@ public class MainPanel extends JPanel {
         table[i][j].setEnabled(true);
         table[i][j].setLabel(" ");
         table[i][j].setBackground(Color.gray);
-        table[i][j].setForeground(Color.white);
+        table[i][j].setForeground(Color.black);
         add(table[i][j]);
-        minesweeper.setBomb(i, j, false);
-        minesweeper.setFlag(i, j, false);
-        minesweeper.setExposed(i, j, false);
-        minesweeper.setCheck(i, j, false);
       }
     }
     int nB = minesweeper.getNumberBombs();
@@ -155,8 +151,8 @@ public class MainPanel extends JPanel {
     table[y2][x2 + 3].setLabel("E");
     table[y2][x2 + 4].setLabel("!");
     for (int i = -4; i < 5; i++) {
-      table[y2][x2 + i].setBackground(Color.black);
-      table[y2][x2 + i].setForeground(Color.white);
+      table[y2][x2 + i].setBackground(Color.white);
+      table[y2][x2 + i].setForeground(Color.black);
     }
   }
 
@@ -165,7 +161,7 @@ public class MainPanel extends JPanel {
       for (int j = 0; j < minesweeper.getNumberColumns(); j++) {
         if (minesweeper.getCheck(i, j) == true && minesweeper.getFlag(i, j) == false
           && minesweeper.getBomb(i, j) == false) {
-          table[i][j].setBackground(Color.darkGray);
+          table[i][j].setBackground(Color.white);
         }
         if (minesweeper.getFlag(i, j) == false && minesweeper.checkSurroundingBombs(i, j) == 0) {
           table[i][j].setLabel("");
@@ -205,8 +201,8 @@ public class MainPanel extends JPanel {
       table[y2][x2 + 3].setLabel("!");
       table[y2][x2 + 4].setLabel("!");
       for (int i = -4; i < 5; i++) {
-        table[y2][x2 + i].setBackground(Color.black);
-        table[y2][x2 + i].setForeground(Color.white);
+        table[y2][x2 + i].setBackground(Color.white);
+        table[y2][x2 + i].setForeground(Color.black);
       }
     }
   }

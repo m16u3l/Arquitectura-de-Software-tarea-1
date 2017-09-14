@@ -16,12 +16,12 @@ public class TopPanel extends JPanel {
   private JPanel panelTop;
   private JPanel panelButtons;
 
-  private final Label NEW_GAME;
-  private final Label bombs;
+  private Label NEW_GAME;
+  private Label bombs;
 
-  private final Button restartEasy;
-  private final Button restartMedium;
-  private final Button restartHard;
+  private Button restartEasy;
+  private Button restartMedium;
+  private Button restartHard;
   
   private int bombsRemaining;
   

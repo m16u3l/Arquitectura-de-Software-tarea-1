@@ -41,13 +41,17 @@ public class Minesweeper {
     sizeX = 300;
     sizeY = 346;
     if (setup == 2) {
-      previewRows = 16;
-      previewColumns = 16;
       setup = 1;
     } else if (setup == 3) {
-      previewRows = 16;
-      previewColumns = 30;
       setup = 1;
+    }
+    for(int i=0; i<numberRows; i++){
+      for(int j=0; j<numberColumns;j++){
+        bomb[i][j] = false;
+        flag[i][j] = false;
+        exposed[i][j] = false;
+        checkwinbool[i][j] = false;
+      }
     }
   }
 
@@ -58,13 +62,17 @@ public class Minesweeper {
     sizeX = 496;
     sizeY = 540;
     if (setup == 1) {
-      previewRows = 10;
-      previewColumns = 10;
       setup = 2;
     } else if (setup == 3) {
-      previewRows = 16;
-      previewColumns = 30;
       setup = 2;
+    }
+    for(int i=0; i<numberRows; i++){
+      for(int j=0; j<numberColumns;j++){
+        bomb[i][j] = false;
+        flag[i][j] = false;
+        exposed[i][j] = false;
+        checkwinbool[i][j] = false;
+      }
     }
   }
 
@@ -75,13 +83,17 @@ public class Minesweeper {
     sizeX = 780;
     sizeY = 492;
     if (setup == 1) {
-      previewRows = 10;
-      previewColumns = 10;
       setup = 3;
     } else if (setup == 2) {
-      previewRows = 16;
-      previewColumns = 16;
       setup = 3;
+    }
+    for(int i=0; i<numberRows; i++){
+      for(int j=0; j<numberColumns;j++){
+        bomb[i][j] = false;
+        flag[i][j] = false;
+        exposed[i][j] = false;
+        checkwinbool[i][j] = false;
+      }
     }
   }
 
