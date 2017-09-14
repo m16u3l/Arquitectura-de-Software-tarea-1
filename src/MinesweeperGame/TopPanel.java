@@ -83,13 +83,13 @@ public class TopPanel extends JPanel {
     public void mouseClicked(MouseEvent event) {
 
       if (event.getSource() == restartEasy) {
-        minesweeper.restartEasy();
+        minesweeper.initEasy();
       }
       if (event.getSource() == restartMedium) {
-        minesweeper.restartMedium();
+        minesweeper.initMedium();
       }
       if (event.getSource() == restartHard) {
-        minesweeper.restartHard();
+        minesweeper.initHard();
       }
 
       if ((event.getSource() == restartMedium) || (event.getSource() == restartHard)

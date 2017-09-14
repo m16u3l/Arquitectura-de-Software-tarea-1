@@ -21,55 +21,40 @@ public class Minesweeper {
     numberColumns = 30;
     numberBombs = 99;
     setup = 3;
-
+    
     bomb = new boolean[numberRows][numberColumns];
     flag = new boolean[numberRows][numberColumns];
     exposed = new boolean[numberRows][numberColumns];
     checkwinbool = new boolean[numberRows][numberColumns];
+    
     setBombs();
   }
 
-  public void restartEasy() {
+  public void initEasy() {
     numberRows = 10;
     numberColumns = 10;
     numberBombs = 10;
-    
-    if (setup == 2) {
-      setup = 1;
-    } else if (setup == 3) {
-      setup = 1;
-    }
-    initGame();
-    setBombs();
+    setup = 1;
+    startGame();
   }
 
-  public void restartMedium() {
+  public void initMedium() {
     numberRows = 16;
     numberColumns = 16;
     numberBombs = 40;
-    if (setup == 1) {
-      setup = 2;
-    } else if (setup == 3) {
-      setup = 2;
-    }
-    initGame();
-    setBombs();
+    setup = 2;
+    startGame();
   }
 
-  public void restartHard() {
-    numberRows = 16;
-    numberColumns = 30;
-    numberBombs = 99;
-    if (setup == 1) {
-      setup = 3;
-    } else if (setup == 2) {
-      setup = 3;
-    }
-    initGame();
-    setBombs();
+  public void initHard() {
+    this.numberRows = 16;
+    this.numberColumns = 30;
+    this.numberBombs = 99;
+    this.setup = 3;
+    startGame();
   }
 
-  private void initGame() {
+  private void startGame() {
     for (int i = 0; i < numberRows; i++) {
       for (int j = 0; j < numberColumns; j++) {
         bomb[i][j] = false;
@@ -78,6 +63,7 @@ public class Minesweeper {
         checkwinbool[i][j] = false;
       }
     }
+    setBombs();
   }
 
   private void setBombs() {

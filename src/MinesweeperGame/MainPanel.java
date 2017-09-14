@@ -17,10 +17,9 @@ public class MainPanel extends JPanel {
   private GridLayout gridLayout;
 
   private String surbombs;
-  
 
   private int bombsRemaining;
-  
+
   public MainPanel(Minesweeper minesweeper, ViewGame viewGame) {
     this.minesweeper = minesweeper;
     this.viewGame = viewGame;
@@ -52,7 +51,7 @@ public class MainPanel extends JPanel {
   public void restartMainPanel() {
     gridLayout.setRows(minesweeper.getNumberRows());
     gridLayout.setColumns(minesweeper.getNumberColumns());
-    
+
     int numRows = minesweeper.getNumberRows();
     int numCols = minesweeper.getNumberColumns();
     for (int i = 0; i < numRows; i++) {
@@ -195,9 +194,10 @@ public class MainPanel extends JPanel {
   }
 
   private class BombListener implements MouseListener {
+
     @Override
     public void mouseClicked(MouseEvent event) {
-      boolean gameover = false; 
+      boolean gameover = false;
 
       int numRows = minesweeper.getNumberRows();
       int numCols = minesweeper.getNumberColumns();
@@ -205,8 +205,7 @@ public class MainPanel extends JPanel {
       for (int i = 0; i < numRows; i++) {
         for (int j = 0; j < numCols; j++) {
           if (event.getSource() == table[i][j]) {
-            if ((event.getButton() == MouseEvent.BUTTON1)
-              && (minesweeper.getFlag(i, j) == false)) {
+            if ((event.getButton() == MouseEvent.BUTTON1) && (minesweeper.getFlag(i, j) == false)) {
               if (minesweeper.getBomb(i, j) == true) {
                 table[i][j].setLabel("*");
                 gameOver();
@@ -217,7 +216,7 @@ public class MainPanel extends JPanel {
               minesweeper.setExposed(i, j, true);
               minesweeper.setCheck(i, j, true);
 
-              surbombs = Integer.toString(minesweeper.checkSurroundingBombs(i, j)); 
+              surbombs = Integer.toString(minesweeper.checkSurroundingBombs(i, j));
               table[i][j].setLabel(surbombs);
               if (minesweeper.checkSurroundingBombs(i, j) == 0) {
                 check(i, j);
@@ -241,14 +240,13 @@ public class MainPanel extends JPanel {
 
                 bombsRemaining--;
               }
-              
+
               viewGame.panelGame.topPanel.restartTopPanel(bombsRemaining);
-              
+
             } else if ((event.getButton() == MouseEvent.BUTTON2)
-              && (minesweeper.getFlag(i, j) == false)
-              && (minesweeper.getCheck(i, j) == true)
+              && (minesweeper.getFlag(i, j) == false) && (minesweeper.getCheck(i, j) == true)
               && (minesweeper.getBomb(i, j) == false)) {
-              if (minesweeper.getSurroundingFlags(i, j) == minesweeper.checkSurroundingBombs(i, j)) {
+              if (minesweeper.getSurroundingFlags(i, j) == minesweeper.checkSurroundingBombs(i, j)){
                 for (int k = i - 1; k <= i + 1; k++) {
                   for (int l = j - 1; l <= j + 1; l++) {
                     if ((k < 0) || (l < 0) || (k >= minesweeper.getNumberRows())
