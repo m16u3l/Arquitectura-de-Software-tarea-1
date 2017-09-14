@@ -11,13 +11,9 @@ public class MainPanel extends JPanel {
 
   private Minesweeper minesweeper;
   private ViewGame viewGame;
-
   private Button table[][];
-
   private GridLayout gridLayout;
-
   private String surbombs;
-  
 
   private int bombsRemaining;
   
@@ -31,16 +27,17 @@ public class MainPanel extends JPanel {
     table = new Button[minesweeper.getNumberRows()][minesweeper.getNumberColumns()];
 
     bombsRemaining = minesweeper.getNumberBombs();
+    
     initMainPanel();
   }
 
   public void initMainPanel() {
     MouseListener listener = new BombListener();
 
-    int nR = minesweeper.getNumberRows();
-    int nC = minesweeper.getNumberColumns();
-    for (int i = 0; i < nR; i++) {
-      for (int j = 0; j < nC; j++) {
+    int numRows = minesweeper.getNumberRows();
+    int numCols = minesweeper.getNumberColumns();
+    for (int i = 0; i < numRows; i++) {
+      for (int j = 0; j < numCols; j++) {
         table[i][j] = new Button();
         table[i][j].addMouseListener(listener);
         add(table[i][j]);
@@ -53,10 +50,10 @@ public class MainPanel extends JPanel {
     gridLayout.setRows(minesweeper.getNumberRows());
     gridLayout.setColumns(minesweeper.getNumberColumns());
     
-    int nR = minesweeper.getNumberRows();
-    int nC = minesweeper.getNumberColumns();
-    for (int i = 0; i < nR; i++) {
-      for (int j = 0; j < nC; j++) {
+    int numRows = minesweeper.getNumberRows();
+    int numCols = minesweeper.getNumberColumns();
+    for (int i = 0; i < numRows; i++) {
+      for (int j = 0; j < numCols; j++) {
         table[i][j].setEnabled(true);
         table[i][j].setLabel(" ");
         table[i][j].setBackground(Color.LIGHT_GRAY);
@@ -159,10 +156,10 @@ public class MainPanel extends JPanel {
 
   public void checkWin() {
     boolean allexposed = true;
-    int nR = minesweeper.getNumberRows();
-    int nC = minesweeper.getNumberColumns();
-    for (int i = 0; i < nR; i++) {
-      for (int j = 0; j < nC; j++) {
+    int numRows = minesweeper.getNumberRows();
+    int numCols = minesweeper.getNumberColumns();
+    for (int i = 0; i < numRows; i++) {
+      for (int j = 0; j < numCols; j++) {
         if ((minesweeper.getFlag(i, j) == true)
           && (minesweeper.getBomb(i, j) == false)) {
           allexposed = false;
@@ -200,14 +197,13 @@ public class MainPanel extends JPanel {
     public void mouseClicked(MouseEvent event) {
       boolean gameover = false;
 
-      int n = minesweeper.getNumberRows();
-      int m = minesweeper.getNumberColumns();
+      int numRows = minesweeper.getNumberRows();
+      int numCols = minesweeper.getNumberColumns();
 
-      for (int i = 0; i < n; i++) {
-        for (int j = 0; j < m; j++) {
+      for (int i = 0; i < numRows; i++) {
+        for (int j = 0; j < numCols; j++) {
           if (event.getSource() == table[i][j]) {
-            if ((event.getButton() == MouseEvent.BUTTON1)
-              && (minesweeper.getFlag(i, j) == false)) {
+            if (event.getButton() == MouseEvent.BUTTON1 && minesweeper.getFlag(i, j) == false) {
               if (minesweeper.getBomb(i, j) == true) {
                 
                 table[i][j].setLabel("*");
@@ -246,31 +242,6 @@ public class MainPanel extends JPanel {
               }
               
               viewGame.panelGame.topPanel.restartTopPanel(bombsRemaining);
-              
-            } else if ((event.getButton() == MouseEvent.BUTTON2)
-              && (minesweeper.getFlag(i, j) == false)
-              && (minesweeper.getCheck(i, j) == true)
-              && (minesweeper.getBomb(i, j) == false)) {
-              if (minesweeper.getSurroundingFlags(i, j) == minesweeper.checkSurroundingBombs(i, j)) {
-                for (int k = i - 1; k <= i + 1; k++) {
-                  for (int l = j - 1; l <= j + 1; l++) {
-                    if ((k < 0) || (l < 0) || (k >= minesweeper.getNumberRows())
-                      || (l >= minesweeper.getNumberColumns())) {
-                      break;
-                    }
-                    if (minesweeper.getBomb(k, l) == false
-                      && minesweeper.getFlag(k, l) == true) {
-                      gameOver();
-                      gameover = true;
-                      break;
-                    }
-                  }
-                }
-                if (gameover == false) {
-                  exposeSurroundingButtons(i, j);
-                  check(i, j);
-                }
-              }
             }
             if (gameover == false) {
               clicked();
