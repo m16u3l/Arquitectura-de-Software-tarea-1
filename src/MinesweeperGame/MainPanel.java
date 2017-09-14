@@ -17,8 +17,7 @@ public class MainPanel extends JPanel {
   private GridLayout gridLayout;
 
   private String surbombs;
-  private int randomBombX;
-  private int randomBombY;
+  
 
   private int bombsRemaining;
   
@@ -38,10 +37,10 @@ public class MainPanel extends JPanel {
   public void initMainPanel() {
     MouseListener listener = new BombListener();
 
-    int nR = minesweeper.getNumberRows();
-    int nC = minesweeper.getNumberColumns();
-    for (int i = 0; i < nR; i++) {
-      for (int j = 0; j < nC; j++) {
+    int numRows = minesweeper.getNumberRows();
+    int numCols = minesweeper.getNumberColumns();
+    for (int i = 0; i < numRows; i++) {
+      for (int j = 0; j < numCols; j++) {
         table[i][j] = new Button();
         table[i][j].addMouseListener(listener);
         add(table[i][j]);
@@ -53,28 +52,16 @@ public class MainPanel extends JPanel {
   public void restartMainPanel() {
     gridLayout.setRows(minesweeper.getNumberRows());
     gridLayout.setColumns(minesweeper.getNumberColumns());
-    int bombsCount = 0;
-
-    int nR = minesweeper.getNumberRows();
-    int nC = minesweeper.getNumberColumns();
-    for (int i = 0; i < nR; i++) {
-      for (int j = 0; j < nC; j++) {
+    
+    int numRows = minesweeper.getNumberRows();
+    int numCols = minesweeper.getNumberColumns();
+    for (int i = 0; i < numRows; i++) {
+      for (int j = 0; j < numCols; j++) {
         table[i][j].setEnabled(true);
         table[i][j].setLabel(" ");
         table[i][j].setBackground(Color.gray);
         table[i][j].setForeground(Color.black);
         add(table[i][j]);
-      }
-    }
-    int nB = minesweeper.getNumberBombs();
-    while (bombsCount < nB) {
-      randomBombX = (int) (Math.random() * (nR));
-      randomBombY = (int) (Math.random() * (nC));
-      if (minesweeper.getBomb(randomBombX, randomBombY) == false) {
-        minesweeper.setBomb(randomBombX, randomBombY, true);
-        minesweeper.setCheck(randomBombX, randomBombY, true);
-
-        bombsCount++;
       }
     }
   }
@@ -172,10 +159,10 @@ public class MainPanel extends JPanel {
 
   public void checkWin() {
     boolean allexposed = true;
-    int nR = minesweeper.getNumberRows();
-    int nC = minesweeper.getNumberColumns();
-    for (int i = 0; i < nR; i++) {
-      for (int j = 0; j < nC; j++) {
+    int numRows = minesweeper.getNumberRows();
+    int numCols = minesweeper.getNumberColumns();
+    for (int i = 0; i < numRows; i++) {
+      for (int j = 0; j < numCols; j++) {
         if ((minesweeper.getFlag(i, j) == true)
           && (minesweeper.getBomb(i, j) == false)) {
           allexposed = false;
@@ -208,27 +195,24 @@ public class MainPanel extends JPanel {
   }
 
   private class BombListener implements MouseListener {
-
     @Override
     public void mouseClicked(MouseEvent event) {
-      boolean gameover = false;
+      boolean gameover = false; 
 
-      int n = minesweeper.getNumberRows();
-      int m = minesweeper.getNumberColumns();
+      int numRows = minesweeper.getNumberRows();
+      int numCols = minesweeper.getNumberColumns();
 
-      for (int i = 0; i < n; i++) {
-        for (int j = 0; j < m; j++) {
+      for (int i = 0; i < numRows; i++) {
+        for (int j = 0; j < numCols; j++) {
           if (event.getSource() == table[i][j]) {
             if ((event.getButton() == MouseEvent.BUTTON1)
               && (minesweeper.getFlag(i, j) == false)) {
               if (minesweeper.getBomb(i, j) == true) {
-                
                 table[i][j].setLabel("*");
                 gameOver();
                 table[i][j].setBackground(Color.black);
                 gameover = true;
                 break;
-
               }
               minesweeper.setExposed(i, j, true);
               minesweeper.setCheck(i, j, true);

@@ -20,12 +20,21 @@ public final class ViewGame extends JFrame {
     setDefaultCloseOperation(EXIT_ON_CLOSE);
     panelGame = new PanelGame(minesweeper, this);
     add(panelGame);
-
-    sizeX = minesweeper.getSizeX();
-    sizeY = minesweeper.getSizeY();
-
+    switch (minesweeper.getSetup()) {
+      case 1:
+        sizeX = 300;
+        sizeY = 346;
+        break;
+      case 2:
+        sizeX = 496;
+        sizeY = 540;
+        break;
+      default:
+        sizeX = 780;
+        sizeY = 492;
+        break;
+    }
     setSize(sizeX, sizeY);
-    
   }
-  
+
 }

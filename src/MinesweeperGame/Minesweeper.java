@@ -6,68 +6,72 @@ public class Minesweeper {
   private int numberColumns;
   private int numberBombs;
 
-  private int previewRows;
-  private int previewColumns;
-
   private boolean bomb[][];
   private boolean flag[][];
   private boolean exposed[][];
   private boolean checkwinbool[][];
 
   private int setup;
-  private int sizeX;
-  private int sizeY;
+
+  private int randomBombX;
+  private int randomBombY;
 
   public Minesweeper() {
     numberRows = 16;
     numberColumns = 30;
     numberBombs = 99;
-    previewRows = 16;
-    previewColumns = 30;
-    sizeX = 780;
-    sizeY = 492;
     setup = 3;
 
     bomb = new boolean[numberRows][numberColumns];
     flag = new boolean[numberRows][numberColumns];
     exposed = new boolean[numberRows][numberColumns];
     checkwinbool = new boolean[numberRows][numberColumns];
+    setBombs();
   }
 
   public void restartEasy() {
     numberRows = 10;
     numberColumns = 10;
     numberBombs = 10;
-    sizeX = 300;
-    sizeY = 346;
+    
     if (setup == 2) {
       setup = 1;
     } else if (setup == 3) {
       setup = 1;
     }
-    for(int i=0; i<numberRows; i++){
-      for(int j=0; j<numberColumns;j++){
-        bomb[i][j] = false;
-        flag[i][j] = false;
-        exposed[i][j] = false;
-        checkwinbool[i][j] = false;
-      }
-    }
+    initGame();
+    setBombs();
   }
 
   public void restartMedium() {
     numberRows = 16;
     numberColumns = 16;
     numberBombs = 40;
-    sizeX = 496;
-    sizeY = 540;
     if (setup == 1) {
       setup = 2;
     } else if (setup == 3) {
       setup = 2;
     }
-    for(int i=0; i<numberRows; i++){
-      for(int j=0; j<numberColumns;j++){
+    initGame();
+    setBombs();
+  }
+
+  public void restartHard() {
+    numberRows = 16;
+    numberColumns = 30;
+    numberBombs = 99;
+    if (setup == 1) {
+      setup = 3;
+    } else if (setup == 2) {
+      setup = 3;
+    }
+    initGame();
+    setBombs();
+  }
+
+  private void initGame() {
+    for (int i = 0; i < numberRows; i++) {
+      for (int j = 0; j < numberColumns; j++) {
         bomb[i][j] = false;
         flag[i][j] = false;
         exposed[i][j] = false;
@@ -76,23 +80,15 @@ public class Minesweeper {
     }
   }
 
-  public void restartHard() {
-    numberRows = 16;
-    numberColumns = 30;
-    numberBombs = 99;
-    sizeX = 780;
-    sizeY = 492;
-    if (setup == 1) {
-      setup = 3;
-    } else if (setup == 2) {
-      setup = 3;
-    }
-    for(int i=0; i<numberRows; i++){
-      for(int j=0; j<numberColumns;j++){
-        bomb[i][j] = false;
-        flag[i][j] = false;
-        exposed[i][j] = false;
-        checkwinbool[i][j] = false;
+  private void setBombs() {
+    int bombsCount = 0;
+    while (bombsCount < numberBombs) {
+      randomBombX = (int) (Math.random() * (numberRows));
+      randomBombY = (int) (Math.random() * (numberColumns));
+      if (bomb[randomBombX][randomBombY] == false) {
+        bomb[randomBombX][randomBombY] = true;
+        checkwinbool[randomBombX][randomBombY] = true;
+        bombsCount++;
       }
     }
   }
@@ -139,23 +135,7 @@ public class Minesweeper {
   public int getSetup() {
     return setup;
   }
-
-  public int getProw() {
-    return previewRows;
-  }
-
-  public int getPcol() {
-    return previewColumns;
-  }
-
-  public int getSizeX() {
-    return sizeX;
-  }
-
-  public int getSizeY() {
-    return sizeY;
-  }
-
+  
   public int getNumberRows() {
     return numberRows;
   }
@@ -184,25 +164,9 @@ public class Minesweeper {
     return exposed[i][j];
   }
 
-  public boolean[][] getCheckT() {
-    return checkwinbool;
-  }
-
-  public boolean[][] getBombT() {
-    return bomb;
-  }
-
-  public boolean[][] getFlagT() {
-    return flag;
-  }
-
   /*
         sets
    */
-  public void setBomb(int i, int j, boolean x) {
-    bomb[i][j] = x;
-  }
-
   public void setFlag(int i, int j, boolean x) {
     flag[i][j] = x;
   }
@@ -214,29 +178,4 @@ public class Minesweeper {
   public void setCheck(int i, int j, boolean x) {
     checkwinbool[i][j] = x;
   }
-
-  public void setNumberRows(int x) {
-    numberRows = x;
-  }
-
-  public void setNumberColumns(int x) {
-    numberColumns = x;
-  }
-
-  public void setNumberBombs(int x) {
-    numberBombs = x;
-  }
-
-  public void setProw(int x) {
-    previewRows = x;
-  }
-
-  public void setPcol(int x) {
-    previewColumns = x;
-  }
-
-  public void setSetup(int x) {
-    setup = x;
-  }
-
 }
